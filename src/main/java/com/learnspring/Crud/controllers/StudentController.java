@@ -13,16 +13,22 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+//    CREATE
     @PostMapping("/students")
     public Student saveStudent(@RequestBody Student student){
         return studentService.saveStudent(student);
     }
 
+//    READ
     @GetMapping("students/{id}")
     public Student getStudentInfo(@PathVariable("id") Long id){
         return studentService.getStudentInfo(id);
     }
 
+//    UPDATE
+
+
+//    DELETE
     @DeleteMapping("students/{id}")
     public String deleteStudent(@PathVariable("id") Long id){
         return studentService.deleteStudent(id);
