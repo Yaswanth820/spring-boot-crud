@@ -28,4 +28,18 @@ public class StudentServiceImpl implements StudentService{
         return s.toString();
     }
 
+    @Override
+    public Student updateStudentInfo(Long id, Student student) {
+        Student temp = studentRepository.findById(id).get();
+        if(student.getStudentName() != null){
+            temp.setStudentName(student.getStudentName());
+        }
+        if(student.getStudentDepartment() != null){
+            temp.setStudentDepartment(student.getStudentDepartment());
+        }
+        if(student.getStudentGPA() != 0){
+            temp.setStudentGPA(student.getStudentGPA());
+        }
+        return studentRepository.save(temp);
+    }
 }
