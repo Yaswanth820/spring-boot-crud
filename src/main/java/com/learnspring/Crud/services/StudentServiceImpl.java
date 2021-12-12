@@ -5,6 +5,8 @@ import com.learnspring.Crud.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class StudentServiceImpl implements StudentService{
 
@@ -31,15 +33,15 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public Student updateStudentInfo(Long id, Student student) {
         Student temp = studentRepository.findById(id).get();
-        if(student.getStudentName() != null){
+        if(Objects.nonNull(student.getStudentName()) && !"".equalsIgnoreCase(student.getStudentName())){
             temp.setStudentName(student.getStudentName());
         }
-        if(student.getStudentDepartment() != null){
+        if(Objects.nonNull(student.getStudentDepartment()) && !"".equalsIgnoreCase(student.getStudentDepartment())){
             temp.setStudentDepartment(student.getStudentDepartment());
         }
-        if(student.getStudentGPA() != 0){
-            temp.setStudentGPA(student.getStudentGPA());
-        }
+//        if(Objects.nonNull(student.getStudentGPA()) && !"".equalsIgnoreCase(student.getStudentGPA())){
+//            temp.setStudentGPA(student.getStudentGPA());
+//        }
         return studentRepository.save(temp);
     }
 }
