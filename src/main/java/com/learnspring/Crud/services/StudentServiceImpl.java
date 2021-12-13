@@ -32,16 +32,20 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student updateStudentInfo(Long id, Student student) {
-        Student temp = studentRepository.findById(id).get();
-        if(Objects.nonNull(student.getStudentName()) && !"".equalsIgnoreCase(student.getStudentName())){
-            temp.setStudentName(student.getStudentName());
+        Student depDB = studentRepository.findById(id).get();
+
+        if(Objects.nonNull(student.getStudentName()) && !"".equalsIgnoreCase(student.getStudentName())) {
+            depDB.setStudentName(student.getStudentName());
         }
-        if(Objects.nonNull(student.getStudentDepartment()) && !"".equalsIgnoreCase(student.getStudentDepartment())){
-            temp.setStudentDepartment(student.getStudentDepartment());
+
+        if(Objects.nonNull(student.getStudentDepartment()) && !"".equalsIgnoreCase(student.getStudentDepartment())) {
+            depDB.setStudentDepartment(student.getStudentDepartment());
         }
-//        if(Objects.nonNull(student.getStudentGPA()) && !"".equalsIgnoreCase(student.getStudentGPA())){
-//            temp.setStudentGPA(student.getStudentGPA());
-//        }
-        return studentRepository.save(temp);
+
+        if(Objects.nonNull(student.getStudentGPA())) {
+            depDB.setStudentGPA(student.getStudentGPA());
+        }
+
+        return studentRepository.save(depDB);
     }
 }
