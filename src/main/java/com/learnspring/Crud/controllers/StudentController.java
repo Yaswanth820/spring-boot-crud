@@ -36,4 +36,10 @@ public class StudentController {
     public String deleteStudent(@PathVariable("id") Long id){
         return studentService.deleteStudent(id);
     }
+
+//    SELECT BY NAME
+//    @GetMapping("students/name/{name}")
+//    public Student getStudentByName(){
+//
+//    }
 }
